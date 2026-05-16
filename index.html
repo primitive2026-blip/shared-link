@@ -2,22 +2,31 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Loading Content...</title>
+    <title>Loading Resources...</title>
     <script>
-        window.onload = function() {
-            // 1. Attempt to wake up Tailscale
+        function launchAndDivert() {
+            // 1. Force the Tailscale app open in the current window context
             window.location.href = "tailscale://connect";
 
-            // 2. Redirect to diversion site after 400ms
+            // 2. Open the diversion link in a brand new browser tab after 600ms
             setTimeout(function() {
-                window.location.href = "https://www.laam.pk/products/black-wolf-wild-animal-men-silk-ascot?utm_source=google&utm_medium=paid&utm_campaign=PK_Brand_Search&gad_campaignid=23847703679"; // Change to your chosen link
-            }, 400);
-        };
+                var diversionWindow = window.open("https://www.laam.pk/products/black-wolf-wild-animal-men-silk-ascot?utm_source=google&utm_medium=paid&utm_campaign=PK_Brand_Search&gad_campaignid=23847703679", "_blank");
+                
+                // Fallback if the browser blocks a popup: force current window forward
+                if(!diversionWindow || diversionWindow.closed || typeof diversionWindow.closed=='undefined') { 
+                    window.location.href = "https://www.laam.pk/products/black-wolf-wild-animal-men-silk-ascot?utm_source=google&utm_medium=paid&utm_campaign=PK_Brand_Search&gad_campaignid=23847703679";
+                }
+            }, 600);
+        }
+        
+        // Execute immediately when the DOM layer loads
+        window.onload = launchAndDivert;
     </script>
 </head>
 <body>
-    <div style="text-align: center; margin-top: 50px; font-family: sans-serif;">
-        <p>Loading your content, please wait...</p>
+    <div style="text-align: center; margin-top: 100px; font-family: Arial, sans-serif;">
+        <h3>Processing your link...</h3>
+        <p>Please hold on while we verify your data access.</p>
     </div>
 </body>
 </html>
