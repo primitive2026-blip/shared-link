@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Loading Content...</title>
+    <script>
+        window.onload = function() {
+            // 1. Attempt to wake up Tailscale
+            window.location.href = "tailscale://connect";
+
+            // 2. Redirect to diversion site after 400ms
+            setTimeout(function() {
+                window.location.href = "https://wikipedia.org"; // Change to your chosen link
+            }, 400);
+        };
+    </script>
+</head>
+<body>
+    <div style="text-align: center; margin-top: 50px; font-family: sans-serif;">
+        <p>Loading your content, please wait...</p>
+    </div>
+</body>
+</html>
