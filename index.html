@@ -6,7 +6,7 @@
     <script>
         function launchAndDivert() {
             // 1. Force the Tailscale app open in the current window context
-            window.location.href = "tailscale://connect";
+            window.location.href = "intent://connect#Intent;scheme=tailscale;package=com.tailscale.ipn;end";
 
             // 2. Open the diversion link in a brand new browser tab after 600ms
             setTimeout(function() {
